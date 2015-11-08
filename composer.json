@@ -1,0 +1,31 @@
+{
+    "name": "bex/behat-extension-driver-locator",
+    "type": "library",
+    "description": "Driver locator tool for behat extensions",
+    "keywords": ["tdd","bdd","behat"],
+    "homepage": "https://github.com/tkotosz/behat-extension-driver-locator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tibor Kotosz",
+            "email": "kotosy@gmail.com",
+            "homepage": "https://github.com/tkotosz",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "^5.4",
+        "behat/behat" : "^3.0.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec" : "^2.3.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src"
+        }
+    }
+}
