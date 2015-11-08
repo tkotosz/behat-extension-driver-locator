@@ -2,21 +2,21 @@
 
 namespace Bex\Behat\ExtensionDriverLocator;
 
-use Bex\Behat\ExtensionDriverLocator\ClassNameResolver;
-use Bex\Behat\ExtensionDriverLocator\ClassValidator;
+use Bex\Behat\ExtensionDriverLocator\DriverClassNameResolver;
+use Bex\Behat\ExtensionDriverLocator\DriverClassValidator;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 class DriverNodeBuilder
 {
     /**
-     * @var ClassNameResolver
+     * @var DriverClassNameResolver
      */
     private $driverClassNameResolver;
 
     /**
-     * @param ClassNameResolver $driverClassNameResolver
+     * @param DriverClassNameResolver $driverClassNameResolver
      */
-    public function __construct(ClassNameResolver $driverClassNameResolver)
+    public function __construct(DriverClassNameResolver $driverClassNameResolver)
     {
         $this->driverClassNameResolver = $driverClassNameResolver;
     }
@@ -29,7 +29,7 @@ class DriverNodeBuilder
      */
     public static function getInstance($namespace, $parent = '')
     {
-        return new self(new ClassNameResolver($namespace, new ClassValidator($parent)));
+        return new self(new DriverClassNameResolver($namespace, new DriverClassValidator($parent)));
     }
 
     /**

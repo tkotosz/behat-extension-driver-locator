@@ -2,7 +2,7 @@
 
 namespace Bex\Behat\ExtensionDriverLocator;
 
-use Bex\Behat\ExtensionDriverLocator\ClassValidator;
+use Bex\Behat\ExtensionDriverLocator\DriverClassValidator;
 use Symfony\Component\DependencyInjection\Container as DIContainer;
 
 class DriverClassNameResolver
@@ -13,15 +13,15 @@ class DriverClassNameResolver
     private $namespace;
 
     /**
-     * @var ClassValidator
+     * @var DriverClassValidator
      */
     private $classValidator;
 
     /**
-     * @param string         $namespace
-     * @param ClassValidator $classValidator
+     * @param string               $namespace
+     * @param DriverClassValidator $classValidator
      */
-    public function __construct($namespace, ClassValidator $classValidator)
+    public function __construct($namespace, DriverClassValidator $classValidator)
     {
         $this->namespace = $namespace;
         $this->classValidator = $classValidator;

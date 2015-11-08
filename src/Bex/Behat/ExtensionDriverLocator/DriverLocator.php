@@ -2,9 +2,9 @@
 
 namespace Bex\Behat\ExtensionDriverLocator;
 
+use Bex\Behat\ExtensionDriverLocator\DriverClassNameResolver;
+use Bex\Behat\ExtensionDriverLocator\DriverClassValidator;
 use Bex\Behat\ExtensionDriverLocator\DriverInterface;
-use Bex\Behat\ExtensionDriverLocator\ClassNameResolver;
-use Bex\Behat\ExtensionDriverLocator\ClassValidator;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\NodeInterface;
 use Symfony\Component\Config\Definition\Processor;
@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class DriverLocator
 {
     /**
-     * @var ClassNameResolver
+     * @var DriverClassNameResolver
      */
     private $classNameResolver;
 
@@ -23,9 +23,9 @@ class DriverLocator
     private $drivers = [];
 
     /**
-     * @param ClassNameResolver $classNameResolver
+     * @param DriverClassNameResolver $classNameResolver
      */
-    public function __construct(ClassNameResolver $classNameResolver)
+    public function __construct(DriverClassNameResolver $classNameResolver)
     {
         $this->classNameResolver = $classNameResolver;
     }
@@ -38,7 +38,7 @@ class DriverLocator
      */
     public static function getInstance($namespace, $parent = '')
     {
-        return new self(new ClassNameResolver($namespace, new ClassValidator($parent)));
+        return new self(new DriverClassNameResolver($namespace, new DriverClassValidator($parent)));
     }
 
     /**
@@ -66,7 +66,7 @@ class DriverLocator
     }
 
     /**
-     * @param array            $driverKeys 
+     * @param array $driverKeys 
      *
      * @return DriverInterface[]
      */
