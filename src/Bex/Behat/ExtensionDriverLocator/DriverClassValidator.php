@@ -4,7 +4,6 @@ namespace Bex\Behat\ExtensionDriverLocator;
 
 use Bex\Behat\ExtensionDriverLocator\DriverInterface;
 
-
 class DriverClassValidator
 {
     /**
