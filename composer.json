@@ -14,11 +14,11 @@
         }
     ],
     "require": {
-        "php" : "^5.4",
+        "php" : ">=5.4",
         "behat/behat" : "^3.0.0"
     },
     "require-dev": {
-        "phpspec/phpspec" : "^2.3.0"
+        "phpspec/phpspec" : "2.4.0-alpha2"
     },
     "config": {
         "bin-dir": "bin"

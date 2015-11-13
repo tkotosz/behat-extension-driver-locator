@@ -4,7 +4,6 @@ namespace Bex\Behat\ExtensionDriverLocator;
 
 use Bex\Behat\ExtensionDriverLocator\DriverInterface;
 
-
 class DriverClassValidator
 {
     /**
@@ -31,7 +30,7 @@ class DriverClassValidator
             return false;
         }
 
-        if (!is_subclass_of($className, DriverInterface::class)) {
+        if (!is_subclass_of($className, 'Bex\\Behat\\ExtensionDriverLocator\\DriverInterface')) {
             return false;
         }
 

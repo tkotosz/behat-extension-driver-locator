@@ -36,7 +36,7 @@ class DriverNodeBuilder
      * @param  ArrayNodeDefinition $builder
      * @param  string              $activeDriversNodeName
      * @param  string              $driversNodeName
-     * @param  array               $defaultActiveDrivers
+     * @param  array | string      $defaultActiveDrivers
      *
      * @return void
      */
@@ -46,6 +46,7 @@ class DriverNodeBuilder
         $driversNodeName,
         $defaultActiveDrivers
     ) {
+        $defaultActiveDrivers = (is_array($defaultActiveDrivers)) ? $defaultActiveDrivers : [$defaultActiveDrivers];
         $builder
             ->children()
                 ->arrayNode($activeDriversNodeName)
