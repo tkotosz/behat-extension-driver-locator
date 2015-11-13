@@ -43,14 +43,16 @@ class DriverLocator
 
     /**
      * @param  ContainerBuilder $container
-     * @param  array            $configs
+     * @param  array            $activeDrivers
+     * @param  array            $driverConfigs
      *
      * @return DriverInterface[]
      */
     public function findDrivers(ContainerBuilder $container, array $activeDrivers, array $driverConfigs)
     {
+        $driverConfigs = $this->removeUnusedDrivers($activeDrivers, $driverConfigs);
         $this->createDrivers($activeDrivers);
-        $configTree = $this->configureDrivers($driverConfigs);
+        $configTree = $this->configureDrivers();
         $driverConfigs = $this->processDriverConfiguration($configTree, $driverConfigs);
         $this->loadDrivers($container, $driverConfigs);
 
@@ -63,6 +65,23 @@ class DriverLocator
     public function getDrivers()
     {
         return $this->drivers;
+    }
+
+    /**
+     * @param  array $activeDrivers
+     * @param  array $driverConfigs
+     *
+     * @return array
+     */
+    private function removeUnusedDrivers($activeDrivers, $driverConfigs)
+    {
+        foreach ($driverConfigs as $driverKey => $driverConfig) {
+            if (!in_array($driverKey, $activeDrivers)) {
+                unset($driverConfigs[$driverKey]);
+            }
+        }
+
+        return $driverConfigs;
     }
 
     /**
@@ -83,11 +102,9 @@ class DriverLocator
     }
 
     /**
-     * @param  array $driverConfigs
-     *
      * @return NodeInterface
      */
-    private function configureDrivers($driverConfigs)
+    private function configureDrivers()
     {
         $tree = new TreeBuilder();
         $root = $tree->root('drivers');
