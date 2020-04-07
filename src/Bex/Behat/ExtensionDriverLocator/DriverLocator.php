@@ -106,11 +106,10 @@ class DriverLocator
      */
     private function configureDrivers()
     {
-        $tree = new TreeBuilder();
-        $root = $tree->root('drivers');
+        $tree = new TreeBuilder('drivers');
 
         foreach ($this->drivers as $driverKey => $driver) {
-            $driver->configure($root->children()->arrayNode($driverKey));
+            $driver->configure($tree->getRootNode()->children()->arrayNode($driverKey));
         }
 
         return $tree->buildTree();
